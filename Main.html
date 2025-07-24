@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <title>PlayRate - Página Completa</title>
+    <style>
+        :root {
+            --primary-bg-color: #121714;
+            --primary-green: #14CF5E;
+            --primary-green-rgb: 20, 207, 94;
+            --white-text: #ffffff;
+            --light-grey-green: #9CBFAB;
+            --glitch-red: #ff4757;
+            --glitch-blue: #3742fa;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden; 
+            font-family: 'Poppins', sans-serif;
+        }
+
+     .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background-color: var(--primary-bg-color);
+            overflow: hidden;
+        }
+
+     .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background-color: rgba(var(--primary-green-rgb), 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 8s ease-in-out infinite;
+            box-shadow: 0 0 8px rgba(var(--primary-green-rgb), 0.3);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 0.7; }
+            50% { transform: translateY(-25px); opacity: 0.2; }
+            100% { transform: translateY(0); opacity: 0.7; }
+        }
+
+     .banner-container {
+            position: relative; 
+            z-index: 1;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+     .banner-content {
+            position: relative;
+            z-index: 2; 
+            text-align: center;
+        }
+
+     .banner-content h1 {
+            font-weight: 700;
+            /* CAMBIO: Color de texto principal a blanco */
+            color: var(--white-text);
+            position: relative;
+            animation: glitch 5s infinite;
+            text-shadow: 0 0 10px rgba(var(--primary-green-rgb), 0.4);
+            margin: 0;
+            font-size: clamp(2.5rem, 10vw, 4.5rem);
+        }
+
+     .banner-content h1::before,
+     .banner-content h1::after {
+            content: 'PlayRate';  
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: transparent; 
+            overflow: hidden;
+        }
+
+     .banner-content h1::before {
+            left: 2px;
+            text-shadow: -2px 0 var(--glitch-red);
+            animation: glitch-anim-1 2s infinite linear reverse;
+        }
+
+     .banner-content h1::after {
+            left: -2px;
+            text-shadow: -2px 0 var(--glitch-blue), 2px 2px var(--glitch-red);
+            animation: glitch-anim-2 3s infinite linear reverse;
+        }
+
+        @keyframes glitch-anim-1 {
+            0%, 100% { clip: rect(42px, 9999px, 44px, 0); }
+            20% { clip: rect(12px, 9999px, 56px, 0); }
+            40% { clip: rect(38px, 9999px, 24px, 0); }
+            60% { clip: rect(18px, 9999px, 72px, 0); }
+            80% { clip: rect(48px, 9999px, 32px, 0); }
+        }
+
+        @keyframes glitch-anim-2 {
+            0%, 100% { clip: rect(2px, 9999px, 98px, 0); }
+            25% { clip: rect(34px, 9999px, 22px, 0); }
+            50% { clip: rect(78px, 9999px, 54px, 0); }
+            75% { clip: rect(12px, 9999px, 88px, 0); }
+        }
+
+     .banner-content p {
+            color: var(--light-grey-green);
+            margin: 20px 0 0;
+            max-width: 600px;
+            font-size: clamp(0.85rem, 3.5vw, 1.25rem);
+        }
+        
+        /* --- Estilos para Secciones Adicionales --- */
+     .content-section {
+            position: relative;
+            z-index: 1;
+            padding: 50px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            color: var(--light-grey-green);
+        }
+
+     .section-title {
+            color: var(--primary-green);
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+     .description-layout {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+     .description-image {
+            flex: 1;
+        }
+
+     .description-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+     .description-text {
+            flex: 2;
+        }
+
+     .community-title {
+            color: var(--primary-green);
+            font-size: 2.2rem;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+     .problem-text {
+            text-align: center;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+     .separator {
+            border-bottom: 2px dashed rgba(var(--primary-green-rgb), 0.3);
+            width: 80%;
+            margin: 60px auto;
+        }
+
+        /* --- Media Query para Responsividad --- */
+        @media (max-width: 768px) {
+         .description-layout {
+                flex-direction: column;
+                text-align: center;
+            }
+         .section-title,.community-title {
+                font-size: 2rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="background-animation"></div>
+
+    <div class="banner-container">
+        <div class="banner-content">
+            <h1>PlayRate</h1>
+            <p>Tu espacio para compartir experiencias y descubrir nuevos videojuegos.</p>
+        </div>
+    </div>
+
+
+
+    <div class="content-section">
+        <div class="separator"></div>
+        <h2 class="section-title">Descripción</h2>
+        <div class="description-layout">
+            <div class="description-image">
+                <img src="https://i.imgur.com/xWtbZnK.png" alt="Ilustración de comunidad opinando">
+            </div>
+            <div class="description-text">
+                <h3 class="community-title">Opina con la comunidad</h3>
+                <p>Opina sobre diversos videojuegos compartiendo tu experiencia con la comunidad para poder calificarlos, explora nuevos videojuegos acorde a tus gustos o gustos de los demás.</p>
+            </div>
+        </div>
+        <div class="separator"></div>
+    </div>
+
+    <div class="content-section">
+        <h2 class="section-title">Problema</h2>
+        <p class="problem-text">Actualmente existen diversos sitios de reseñas de videojuegos manejados por la crítica especializada, dichos sitios son los que se toman en cuenta para saber las opiniones sobre un videojuego y en varias ocasiones la crítica puede estar sesgada para obtener diversos beneficios con las compañías encargadas de publicar los videojuegos, el problema con esto es que no existe un sitio centralizado donde la misma comunidad sea la que de sus opiniones a diversos videojuegos de su elección.</p>
+    </div>
+    <script>
+        function createParticles() {
+            const container = document.querySelector('.background-animation');
+            if (!container) return;
+            
+            const particleDensity = 0.00005; 
+            const screenArea = window.innerWidth * window.innerHeight;
+            const particleCount = Math.floor(screenArea * particleDensity);
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = -Math.random() * 8 + 's';
+                container.appendChild(particle);
+            }
+        }
+        window.addEventListener('load', createParticles);
+    </script>
+</body>
+</html>
